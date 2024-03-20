@@ -1,0 +1,12 @@
+.ProductImages {
+  @apply  w-[80%] max-md:mx-auto md:w-[35%] 2xl:max-w-[600px];
+  .Swiper1 {
+    @apply mb-3;
+  }
+  .Swiper2 {
+    // @apply w-1/2 ;
+    .ThumbSlides {
+      @apply cursor-pointer;
+    }
+  }
+}

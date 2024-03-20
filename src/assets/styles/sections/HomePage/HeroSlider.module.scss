@@ -1,0 +1,9 @@
+.Swiper {
+  .SwiperSlide {
+    @apply flex items-center justify-center rounded md:rounded-2xl overflow-hidden ;
+    .Img{
+      @apply w-full rounded-3xl
+    }
+  }
+}
+

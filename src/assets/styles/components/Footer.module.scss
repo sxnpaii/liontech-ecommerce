@@ -1,0 +1,33 @@
+// Footer.module.scss
+
+.Footer {
+  @apply py-12;
+
+  .container {
+    @apply space-y-8;
+
+    .navContainer {
+      @apply flex flex-col items-center mb-2 text-center;
+
+      nav {
+        @apply flex items-center justify-center space-x-4;
+
+        a {
+          @apply text-sm font-semibold font-Inter leading-none hover:text-gray-500 dark:hover:text-gray-400 transition;
+        }
+      }
+    }
+
+    .socialContainer {
+      @apply flex items-center justify-center space-x-4;
+
+      a {
+        @apply text-gray-400 dark:text-gray-600 hover:text-gray-400 dark:hover:text-gray-600 transition;
+
+        svg {
+          @apply w-6 h-6;
+        }
+      }
+    }
+  }
+}

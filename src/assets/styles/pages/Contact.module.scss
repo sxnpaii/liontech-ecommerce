@@ -1,0 +1,9 @@
+.Contact {
+  @apply h-[62vh] flex items-center justify-center;
+  .Text {
+    @apply mx-auto sm:max-w-[60%] text-balance text-center text-3xl font-Inter;
+  }
+  .tel{
+    @apply hover:underline animate-pulse font-semibold font-DMSans  
+  }
+}

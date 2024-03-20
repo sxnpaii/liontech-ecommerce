@@ -1,0 +1,25 @@
+.Product {
+  @apply max-w-[350px] rounded-lg bg-white p-5 lg:p-10 transition-all hover:shadow-xl break-inside-avoid;
+
+  &:hover{
+    img{
+      @apply scale-105;
+    }
+  }
+  img {
+    @apply w-full transition-all pointer-events-none;
+  }
+
+  .Price {
+    @apply text-blue-500 sm:text-2xl font-semibold mt-2 bg-white;
+  }
+
+  .Title {
+    @apply  text-gray-700 sm:text-lg font-semibold mb-3 bg-white;
+  }
+  .CharsList{
+  .Chars{
+      @apply sm:list-disc mb-2 font-Inter text-sm
+    }
+  }
+}
