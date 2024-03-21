@@ -1,5 +1,5 @@
-import { MutableRefObject, useLayoutEffect, useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useLayoutEffect, useRef, useState } from "react";
+import { Swiper, SwiperClass, SwiperRef, SwiperSlide } from "swiper/react";
 import { FreeMode, Thumbs, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -16,14 +16,15 @@ const ProductImages = ({
   oneProdImgs: Laptop["images"];
   slug: string | undefined;
 }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
 
-  const swiper1Ref = useRef<MutableRefObject<null>>(null);
-  const swiper2Ref = useRef();
+  const swiper1Ref = useRef<SwiperRef>(null);
+  const swiper2Ref = useRef<SwiperRef>(null);
 
   useLayoutEffect(() => {
-    if (swiper1Ref.current !== null) {
-      swiper1Ref.current.controller.control = swiper2Ref.current;
+    let swipRef = swiper1Ref.current;
+    if (swipRef !== null) {
+      swipRef = swiper2Ref.current;
     }
   }, []);
   return (
@@ -32,16 +33,14 @@ const ProductImages = ({
         className={`mySwiper2 ${sass.Swiper1}`}
         spaceBetween={20}
         onSwiper={(swiper) => {
-          if (swiper1Ref.current !== null) {
-            swiper1Ref.current = swiper;
-          }
+          if (swiper1Ref.current !== null) swiper1Ref.current.swiper = swiper;
         }}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Thumbs, Navigation]}
         slideToClickedSlide={true}
         grabCursor={true}
         loop={false}
-        >
+      >
         <SwiperSlide>
           <img
             src={oneProdImgs.primary.img_url}
@@ -49,38 +48,40 @@ const ProductImages = ({
             style={{
               viewTransitionName: slug,
             }}
-            />
+          />
         </SwiperSlide>
-        {oneProdImgs.all.length !== 0 && oneProdImgs.all.map((img) => (
-          <SwiperSlide>
-            <img src={img.img_url} alt="" />
-          </SwiperSlide>
-        ))}
+        {oneProdImgs.all.length !== 0 &&
+          oneProdImgs.all.map((img) => (
+            <SwiperSlide>
+              <img src={img.img_url} alt="" />
+            </SwiperSlide>
+          ))}
       </Swiper>
-            <Swiper
-              onSwiper={setThumbsSwiper}
-              className={`mySwiper ${sass.Swiper2}`}
-              spaceBetween={10}
-              slidesPerView={3}
-              // direction="vertical"
-              freeMode={true}
-              watchSlidesProgress={true}
-              modules={[FreeMode, Thumbs, Navigation]}
-              slideToClickedSlide={true}
-              loop={false}
-            >
-              <SwiperSlide className={sass.ThumbSlides}>
-                <img
-                  src={oneProdImgs.primary.img_url}
-                  alt={oneProdImgs.primary.metadata.alt}
-                />
-              </SwiperSlide>
-              {oneProdImgs.all.length !== 0 && oneProdImgs.all.map((img) => (
-                <SwiperSlide className={sass.ThumbSlides}>
-                  <img src={img.img_url} alt={img.metadata.alt} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+      <Swiper
+        onSwiper={setThumbsSwiper}
+        className={`mySwiper ${sass.Swiper2}`}
+        spaceBetween={10}
+        slidesPerView={3}
+        // direction="vertical"
+        freeMode={true}
+        watchSlidesProgress={true}
+        modules={[FreeMode, Thumbs, Navigation]}
+        slideToClickedSlide={true}
+        loop={false}
+      >
+        <SwiperSlide className={sass.ThumbSlides}>
+          <img
+            src={oneProdImgs.primary.img_url}
+            alt={oneProdImgs.primary.metadata.alt}
+          />
+        </SwiperSlide>
+        {oneProdImgs.all.length !== 0 &&
+          oneProdImgs.all.map((img) => (
+            <SwiperSlide className={sass.ThumbSlides}>
+              <img src={img.img_url} alt={img.metadata.alt} />
+            </SwiperSlide>
+          ))}
+      </Swiper>
     </section>
   );
 };

@@ -1,18 +1,22 @@
 import { Link, NavLink } from "react-router-dom";
 import sass from "../assets/styles/components/Header.module.scss";
-import { MutableRefObject, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 const Header = () => {
-  const header = useRef<MutableRefObject<null>>();
+  const header = useRef<HTMLElement>(null);
   useEffect(() => {
     let prevScrollpos = window.scrollY;
     window.onscroll = function () {
       const currentScrollPos = window.scrollY;
-      if (prevScrollpos > currentScrollPos) {
-        header.current.style.top = "0";
-      } else {
-        header.current.style.top = "-80px";
+      const HeaderEl = header.current;
+
+      if (HeaderEl !== null) {
+        if (prevScrollpos > currentScrollPos) {
+          HeaderEl.style.top = "0";
+        } else {
+          HeaderEl.style.top = "-80px";
+        }
+        prevScrollpos = currentScrollPos;
       }
-      prevScrollpos = currentScrollPos;
     };
   }, []);
   return (
