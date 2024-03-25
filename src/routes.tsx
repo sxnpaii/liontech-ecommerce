@@ -23,15 +23,15 @@ export const routes = [
         path: "products/:slug",
         element: <OneProduct />,
       },
-    ],
-  },
-  {
-    path: "/dashboard",
-    element: <AdminLayout />,
-    children: [
       {
         path: "/dashboard",
-        element: <AdminPage />,
+        element: <AdminLayout />,
+        children: [
+          {
+            path: "/dashboard",
+            element: <AdminPage />,
+          },
+        ],
       },
     ],
   },
