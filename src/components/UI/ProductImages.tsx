@@ -12,9 +12,13 @@ import sass from "../../assets/styles/sections/OneProductPage/ProductImages.modu
 const ProductImages = ({
   oneProdImgs,
   slug,
+  className,
+  isInAdminPage,
 }: {
   oneProdImgs: Laptop["images"];
-  slug: string | undefined;
+  slug?: string | undefined;
+  className?: string | undefined;
+  isInAdminPage?: boolean | undefined;
 }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
 
@@ -26,11 +30,12 @@ const ProductImages = ({
     if (swipRef !== null) {
       swipRef = swiper2Ref.current;
     }
-  }, []);
+  });
   return (
-    <section className={sass.ProductImages}>
+    <section className={`${sass.ProductImages} ${className}`}>
       <Swiper
         className={`mySwiper2 ${sass.Swiper1}`}
+        autoHeight={true}
         spaceBetween={20}
         onSwiper={(swiper) => {
           if (swiper1Ref.current !== null) swiper1Ref.current.swiper = swiper;
@@ -41,18 +46,22 @@ const ProductImages = ({
         grabCursor={true}
         loop={false}
       >
-        <SwiperSlide>
-          <img
-            src={oneProdImgs.primary.img_url}
-            alt={oneProdImgs.primary.metadata.alt}
-            style={{
-              viewTransitionName: slug,
-            }}
-          />
-        </SwiperSlide>
+        {oneProdImgs.primary && oneProdImgs.all.length !== 0 ? (
+          <SwiperSlide>
+            <img
+              src={oneProdImgs.primary.img_url}
+              alt={oneProdImgs.primary.metadata.alt}
+              style={{
+                viewTransitionName: slug,
+              }}
+            />
+          </SwiperSlide>
+        ) : (
+          <h1>no images</h1>
+        )}
         {oneProdImgs.all.length !== 0 &&
           oneProdImgs.all.map((img) => (
-            <SwiperSlide>
+            <SwiperSlide key={img.img_url}>
               <img src={img.img_url} alt="" />
             </SwiperSlide>
           ))}
@@ -62,6 +71,7 @@ const ProductImages = ({
         className={`mySwiper ${sass.Swiper2}`}
         spaceBetween={10}
         slidesPerView={3}
+        autoHeight={true}
         // direction="vertical"
         freeMode={true}
         watchSlidesProgress={true}
@@ -69,12 +79,14 @@ const ProductImages = ({
         slideToClickedSlide={true}
         loop={false}
       >
-        <SwiperSlide className={sass.ThumbSlides}>
-          <img
-            src={oneProdImgs.primary.img_url}
-            alt={oneProdImgs.primary.metadata.alt}
-          />
-        </SwiperSlide>
+        {oneProdImgs.primary && !isInAdminPage ? (
+          <SwiperSlide>
+            <img
+              src={oneProdImgs.primary.img_url}
+              alt={oneProdImgs.primary.metadata.alt}
+            />
+          </SwiperSlide>
+        ) : null}
         {oneProdImgs.all.length !== 0 &&
           oneProdImgs.all.map((img) => (
             <SwiperSlide className={sass.ThumbSlides}>

@@ -3,10 +3,7 @@
   .Nav {
     @apply flex justify-between items-center h-full;
     .Logo {
-      @apply bg-black p-2;
-      .LogoText {
-        @apply text-white text-end font-Inter;
-      }
+      @apply w-[150px] p-2;
     }
     .Ul {
       @apply flex gap-5;

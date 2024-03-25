@@ -1,4 +1,4 @@
-import Product from "../../components/Product";
+import Product from "../../components/UI/Product";
 import sass from "../../assets/styles/sections/HomePage/Catalog.module.scss";
 import { useContext } from "react";
 import { HomePageContext } from "../../contexts/HomePageContext";

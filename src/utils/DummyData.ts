@@ -15,7 +15,7 @@ const DummyLaptop: Laptop = {
       {
         img_url: "",
         metadata: {
-          alt: "z",
+          alt: "",
         },
       },
     ],

@@ -1,16 +1,24 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 // https://firebase.google.com/docs/web/setup#available-librariesl
 const firebaseConfig = {
-  apiKey: "AIzaSyBFwRGfzx9HEfkHgsPWMfheXhI4ATtj-jI",
-  authDomain: "liontech-ecommerce.firebaseapp.com",
-  projectId: "liontech-ecommerce",
-  storageBucket: "liontech-ecommerce.appspot.com",
-  messagingSenderId: "870173951970",
-  appId: "1:870173951970:web:4dce1300c8917c124cdbbb",
-  measurementId: "G-JRTVH0XQWF",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+
+const db = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app);
+
+export { db, auth, storage };

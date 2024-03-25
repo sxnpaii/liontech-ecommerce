@@ -1,4 +1,4 @@
-import sass from "../assets/styles/components/Footer.module.scss";
+import sass from "../../assets/styles/components/Footer.module.scss";
 const Footer = () => {
   return (
     <footer className={sass.Footer}>

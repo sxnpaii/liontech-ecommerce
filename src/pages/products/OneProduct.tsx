@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Remarkable } from "remarkable";
 
 import { Laptop } from "../../types/records";
 import { HomePageContext } from "../../contexts/HomePageContext";
 import { PriceFormatter } from "../../utils/utils";
 import { DummyLaptop } from "../../utils/DummyData";
-import ProductImages from "../../sections/OneProduct/ProductImages";
+import ProductImages from "../../components/UI/ProductImages";
 
 import tgIcon from "../../assets/images/telegram.svg";
 import sass from "../../assets/styles/pages/OneProduct.module.scss";
@@ -23,6 +24,11 @@ const OneProduct = () => {
       });
     })();
   }, [slug, OneProduct]);
+  // md renderer
+  const md = new Remarkable({
+    breaks: true,
+    html: true,
+  });
   return (
     <section className={sass.OneProduct}>
       {oneProduct ? (
@@ -57,8 +63,11 @@ const OneProduct = () => {
       )}
       <div className={sass.OtherProps}>
         <h3 className={sass.Text}>Boshqa Ma'lumotlar</h3>
-        {/* in this place will be md renderer */}
-        <p className={sass.Others}>{oneProduct.others}</p>
+        {/* md renderer */}
+        <div
+          className={sass.Others}
+          dangerouslySetInnerHTML={{ __html: md.render(oneProduct.others) }}
+        />
       </div>
     </section>
   );

@@ -5,12 +5,12 @@ import { DocumentData, collection, getDocs } from "firebase/firestore";
 import { Laptop } from "../types/records";
 import { db } from "../firebase/firebase";
 // components
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/UI/Header";
+import Footer from "../components/UI/Footer";
 // styles
 import sass from "../assets/styles/layouts/User.module.scss";
 
-const User = () => {
+const MainLayout = () => {
   const [Products, setProducts] = useState<Laptop[]>([]);
   useEffect(() => {
     (async () => {
@@ -27,11 +27,11 @@ const User = () => {
         <Header />
         <section className={sass.Mutable}>
           <Outlet />
-        </section>
+        </section> 
         <Footer />
       </main>
     </HomePageContext.Provider>
   );
 };
 
-export default User;
+export default MainLayout;

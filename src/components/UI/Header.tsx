@@ -1,6 +1,8 @@
-import { Link, NavLink } from "react-router-dom";
-import sass from "../assets/styles/components/Header.module.scss";
 import { useEffect, useRef } from "react";
+import { Link, NavLink } from "react-router-dom";
+
+import Logo from "../../assets/images/Liontech_logo.png"
+import sass from "../../assets/styles/components/Header.module.scss";
 const Header = () => {
   const header = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -22,20 +24,18 @@ const Header = () => {
   return (
     <header className={sass.Header} ref={header}>
       <nav className={sass.Nav}>
-        <div className={sass.Logo}>
-          <Link to="/" className={sass.LogoText}>
-            LION
-            <br />
-            TECH
-          </Link>
-        </div>
+        <Link to="/" className={sass.Logo}>
+          <img src={Logo} alt="Liontech logo" />
+        </Link>
         <ul className={sass.Ul}>
           <li>
             <NavLink className={sass.RouteLinks} to="/contacts">
               Bog'lanish
             </NavLink>
           </li>
-          <li></li>
+          <li>
+            
+          </li>
         </ul>
       </nav>
     </header>

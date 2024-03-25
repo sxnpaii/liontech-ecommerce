@@ -1,7 +1,7 @@
 import { Link, unstable_useViewTransitionState } from "react-router-dom";
-import sass from "../assets/styles/components/Product.module.scss";
-import { Laptop } from "../types/records";
-import { PriceFormatter } from "../utils/utils";
+import sass from "../../assets/styles/components/Product.module.scss";
+import { Laptop } from "../../types/records";
+import { PriceFormatter } from "../../utils/utils";
 
 const Product = ({ product }: { product: Laptop }) => {
   const to = `products/${product.slug}`;
