@@ -15,7 +15,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginReq>();
-  const [cookies, setCookie] = useCookies();
+  const [, setCookie] = useCookies();
   const [errorMessages, setErrorMessages] = useState<string>("");
 
   const LoggingIn = ({
@@ -32,7 +32,11 @@ const Login = () => {
         navigate(`/dashboard/${user.uid + UUID}`);
       })
       .catch((error) => {
-        setErrorMessages(error.message ? "Login yoki parol xato ! Qaytadan urinib ko'ring!" : "");
+        setErrorMessages(
+          error.message
+            ? "Login yoki parol xato ! Qaytadan urinib ko'ring!"
+            : ""
+        );
       });
   };
   return (
