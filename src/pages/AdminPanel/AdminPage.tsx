@@ -101,7 +101,9 @@ const AdminPage = () => {
     };
     // product data uploading
     const DataRef = FirestoreRef(db, "Products", ProductUUID);
-    await setDoc(DataRef, completedData);
+    await setDoc(DataRef, completedData).then(() =>
+      alert("Ma'lumotlar muvoffaqiyatli yuklandi !")
+    );
   };
   const [editorValue, setEditorValue] = useState<string>("");
   const MdEditor = useEditor({ minHeight: 300 });
