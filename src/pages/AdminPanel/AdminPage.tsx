@@ -25,34 +25,29 @@ const AdminPage = () => {
   const [imageForSlider, setImageForSlider] = useState<TempImages>(
     DummyLaptop.images
   );
-  const fileUploader = (
-    files: FileList | null,
-    SettingImg: React.Dispatch<React.SetStateAction<TempImages>>
-  ) => {
-    const temp: TempImages = DummyLaptop.images;
-    SettingImg(DummyLaptop.images);
+  const fileUploader = (files: FileList | null) => {
+    setImageForSlider(DummyLaptop.images);
     if (files) {
       for (const image of files) {
         const reader = new FileReader();
         reader.onload = () => {
-          (temp.primary = {
-            img_url: reader.result as string,
-            metadata: {
-              alt: image.name,
+          setImageForSlider((prev) => ({
+            primary: {
+              img_url: reader.result as string,
+              metadata: {
+                alt: image.name,
+              },
             },
-          }),
-            SettingImg((prev) => ({
-              ...prev,
-              all: [
-                ...prev.all,
-                {
-                  img_url: reader.result as string,
-                  metadata: {
-                    alt: image.name,
-                  },
+            all: [
+              ...prev.all,
+              {
+                img_url: reader.result as string,
+                metadata: {
+                  alt: image.name,
                 },
-              ],
-            }));
+              },
+            ],
+          }));
         };
         reader.readAsDataURL(image);
       }
@@ -68,6 +63,24 @@ const AdminPage = () => {
   const handleUploadingData: SubmitHandler<Laptop | FieldValues> = async (
     data
   ) => {
+    const ProductUUID = v4();
+    // image uploading
+    const imageArray = imageForSlider.all;
+    console.log(imageArray);
+
+    for (let i = 0; i < imageArray.length; i++) {
+      const imageRef = StorageRef(
+        storage,
+        `Products/${ProductUUID}/${imageArray[i].metadata.alt}`
+      );
+
+      await uploadString(imageRef, imageArray[i].img_url as string, "data_url")
+        .then((uploadedImg) => console.log(uploadedImg))
+        .catch((reason) => console.error(reason));
+      imageArray[i].img_url = await getDownloadURL(imageRef);
+      imageArray[i].metadata.alt = data.title;
+      imageForSlider.primary.img_url = await getDownloadURL(imageRef);
+    }
     const completedData = {
       title: data.title,
       price: Number(data.price),
@@ -86,23 +99,6 @@ const AdminPage = () => {
         os: data.os,
       },
     };
-    const ProductUUID = v4();
-    // image uploading
-    const imageArray = imageForSlider.all;
-    for (let i = 0; i < imageArray.length; i++) {
-      const imageRef = StorageRef(
-        storage,
-        `Products/${ProductUUID}/${imageArray[i].metadata.alt}`
-      );
-      await uploadString(imageRef, imageArray[i].img_url, "data_url")
-        .then((uploadedImg) => console.log(uploadedImg))
-        .catch((reason) => console.error(reason));
-
-      imageArray[i].img_url = await getDownloadURL(imageRef);
-      imageArray[i].metadata.alt = data.title;
-
-      imageForSlider.primary.img_url = await getDownloadURL(imageRef);
-    }
     // product data uploading
     const DataRef = FirestoreRef(db, "Products", ProductUUID);
     await setDoc(DataRef, completedData);
@@ -128,11 +124,8 @@ const AdminPage = () => {
             accept="image"
             className={sass.ImagesInput}
             multiple
-
             {...register("images", { required: true })}
-            onChange={({ target }) =>
-              fileUploader(target.files, setImageForSlider)
-            }
+            onChange={({ target }) => fileUploader(target.files)}
           />
           <div className={sass.ImagesInputPrew}>
             <img src={AddImageIcon} alt="No temp Image" />
@@ -167,7 +160,7 @@ const AdminPage = () => {
           </div>
           <div className={sass.Characters}>
             {Object.keys(DummyLaptop.character).map((name: string) => (
-              <div className={sass.Char}>
+              <div className={sass.Char} key={name}>
                 {" "}
                 <span className={sass.CharTitle}>{name.toUpperCase()}: </span>
                 <input

@@ -11,14 +11,7 @@ const DummyLaptop: Laptop = {
         alt: "",
       },
     },
-    all: [
-      {
-        img_url: "",
-        metadata: {
-          alt: "",
-        },
-      },
-    ],
+    all: [],
   },
   character: {
     battery: "",

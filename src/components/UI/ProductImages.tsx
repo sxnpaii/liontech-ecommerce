@@ -8,7 +8,6 @@ import "swiper/css/thumbs";
 
 import { Laptop } from "../../types/records";
 import sass from "../../assets/styles/sections/OneProductPage/ProductImages.module.scss";
-
 const ProductImages = ({
   oneProdImgs,
   slug,
@@ -89,7 +88,7 @@ const ProductImages = ({
         ) : null}
         {oneProdImgs.all.length !== 0 &&
           oneProdImgs.all.map((img) => (
-            <SwiperSlide className={sass.ThumbSlides}>
+            <SwiperSlide className={sass.ThumbSlides} key={img.img_url}>
               <img src={img.img_url} alt={img.metadata.alt} />
             </SwiperSlide>
           ))}
