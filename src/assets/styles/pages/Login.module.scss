@@ -1,0 +1,18 @@
+.Login {
+  @apply h-[60vh] flex items-center justify-center flex-col;
+  .Text{
+    @apply font-Inter font-semibold mb-10 text-xl;
+  }
+  .Form {
+    @apply lg:w-[500px] mx-auto w-full  flex flex-col;
+    input {
+      @apply p-3 mb-2 w-full rounded-lg  border-2 outline-[#0D63F3];
+    }
+    .Button {
+      @apply mt-5 flex  items-center text-center bg-[#0D63F3] rounded-lg px-7 py-3 text-white font-Inter text-lg hover:scale-[1.02] transition-all;
+    }
+    .Error{
+      @apply text-sm text-red-600 transition-all; 
+    }
+  }
+}

@@ -4,7 +4,7 @@ import Contacts from "./pages/Contacts";
 import OneProduct from "./pages/products/OneProduct";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminPage from "./pages/AdminPanel/AdminPage";
-// import Login from "./pages/Login";
+import Login from "./pages/Login";
 
 export const routes = [
   {
@@ -24,14 +24,18 @@ export const routes = [
         element: <OneProduct />,
       },
       {
-        path: "/dashboard",
-        element: <AdminLayout />,
-        children: [
-          {
-            path: "/dashboard",
-            element: <AdminPage />,
-          },
-        ],
+        path: "/login",
+        element: <Login />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "/dashboard/:authToken",
+        element: <AdminPage />,
       },
     ],
   },

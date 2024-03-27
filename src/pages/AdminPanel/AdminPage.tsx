@@ -27,9 +27,10 @@ const AdminPage = () => {
   );
   const fileUploader = (
     files: FileList | null,
-    SettingImg: (laptop: Laptop["images"]) => void
+    SettingImg: React.Dispatch<React.SetStateAction<TempImages>>
   ) => {
     const temp: TempImages = DummyLaptop.images;
+    SettingImg(DummyLaptop.images);
     if (files) {
       for (const image of files) {
         const reader = new FileReader();
@@ -40,17 +41,22 @@ const AdminPage = () => {
               alt: image.name,
             },
           }),
-            temp.all.push({
-              img_url: reader.result as string,
-              metadata: {
-                alt: image.name,
-              },
-            });
+            SettingImg((prev) => ({
+              ...prev,
+              all: [
+                ...prev.all,
+                {
+                  img_url: reader.result as string,
+                  metadata: {
+                    alt: image.name,
+                  },
+                },
+              ],
+            }));
         };
         reader.readAsDataURL(image);
       }
     }
-    SettingImg(temp);
   };
 
   const {
@@ -103,6 +109,7 @@ const AdminPage = () => {
   };
   const [editorValue, setEditorValue] = useState<string>("");
   const MdEditor = useEditor({ minHeight: 300 });
+  console.log(imageForSlider);
 
   return (
     <section className={sass.AdminPage}>
@@ -118,11 +125,13 @@ const AdminPage = () => {
           />
           <input
             type="file"
+            accept="image"
             className={sass.ImagesInput}
             multiple
+
             {...register("images", { required: true })}
             onChange={({ target }) =>
-              fileUploader(target.files, (images) => setImageForSlider(images))
+              fileUploader(target.files, setImageForSlider)
             }
           />
           <div className={sass.ImagesInputPrew}>
