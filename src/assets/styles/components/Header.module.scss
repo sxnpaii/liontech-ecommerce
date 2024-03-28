@@ -10,6 +10,12 @@
       .RouteLinks {
         @apply font-DMSans hover:underline font-semibold hover:text-gray-400 max-sm:text-sm;
       }
+      .Localizer {
+        @apply px-2 bg-transparent outline-[#0D63F3] font-semibold hover:text-gray-400 hover:underline;
+        .LocalizerOptions {
+          @apply inline-block bg-transparent outline-[#0D63F3];
+        }
+      }
     }
   }
 }

@@ -1,8 +1,10 @@
 import { useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-import Logo from "../../assets/images/Liontech_logo.png"
+import Logo from "../../assets/images/Liontech_logo.png";
 import sass from "../../assets/styles/components/Header.module.scss";
+import { useCookies } from "react-cookie";
+import { useTranslation } from "react-i18next";
 const Header = () => {
   const header = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -21,6 +23,12 @@ const Header = () => {
       }
     };
   }, []);
+  const [cookies, setCookies] = useCookies(["lang"]);
+  const { t } = useTranslation();
+  const Localizer = (value: string) => {
+    setCookies("lang", value);
+  };
+
   return (
     <header className={sass.Header} ref={header}>
       <nav className={sass.Nav}>
@@ -30,11 +38,24 @@ const Header = () => {
         <ul className={sass.Ul}>
           <li>
             <NavLink className={sass.RouteLinks} to="/contacts">
-              Bog'lanish
+              {t("header_comp.contact")}
             </NavLink>
           </li>
           <li>
-            
+            <select
+              name="localizer"
+              id="localizer"
+              onChange={({ target }) => Localizer(target.value)}
+              defaultValue={cookies.lang}
+              className={sass.Localizer}
+            >
+              <option value="ru" className={sass.LocalizerOptions}>
+                RUS
+              </option>
+              <option value="uz" className={sass.LocalizerOptions}>
+                UZB
+              </option>
+            </select>
           </li>
         </ul>
       </nav>

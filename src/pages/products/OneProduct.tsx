@@ -8,6 +8,7 @@ import { PriceFormatter } from "../../utils/utils";
 import { DummyLaptop } from "../../utils/DummyData";
 import ProductImages from "../../components/UI/ProductImages";
 
+import { useTranslation } from "react-i18next";
 import tgIcon from "../../assets/images/telegram.svg";
 import sass from "../../assets/styles/pages/OneProduct.module.scss";
 
@@ -29,6 +30,8 @@ const OneProduct = () => {
     breaks: true,
     html: true,
   });
+  // localization
+  const { t } = useTranslation();
   return (
     <section className={sass.OneProduct}>
       {oneProduct ? (
@@ -39,9 +42,11 @@ const OneProduct = () => {
             <b className={sass.Price}>{PriceFormatter(oneProduct.price)}</b>
             <div className={sass.Characters}>
               {Object.keys(oneProduct.character).map((name: string) => (
-                <p className={sass.Char}>
+                <p className={sass.Char} key={name}>
                   {" "}
-                  <span className={sass.CharTitle}>{name.toUpperCase()}: </span>
+                  <span className={sass.CharTitle}>
+                    {t(`one_product_page.character.${name}`)}:{" "}
+                  </span>
                   {oneProduct.character[name]}
                 </p>
               ))}
@@ -52,7 +57,7 @@ const OneProduct = () => {
                 target="_blank"
                 className={sass.Ordered}
               >
-                Sotib olish uchun
+                {t("one_product_page.contact_for_buy")}
                 <img src={tgIcon} alt="" width={45} />
               </a>
             </button>
@@ -62,7 +67,7 @@ const OneProduct = () => {
         <h1> Error</h1>
       )}
       <div className={sass.OtherProps}>
-        <h3 className={sass.Text}>Boshqa Ma'lumotlar</h3>
+        <h3 className={sass.Text}>{t("one_product_page.others")}</h3>
         {/* md renderer */}
         <div
           className={sass.Others}

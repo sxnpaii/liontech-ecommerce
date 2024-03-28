@@ -1,0 +1,31 @@
+{
+  "header_comp": {
+    "contact": "Bog'lanish"
+  },
+  "home_page":{
+    "our_products":"Bizning maxsulotlar"
+  },
+  "contact_page": {
+    "short_desc": "Biz endi boshladik, shuning uchun sayt hozircha test rejimda ishlayapti. Agar noutbuk sotib olmoqchi bo'lsangiz quyidagi raqamga murojaat qiling."
+  },
+  "one_product_page": {
+    "contact_for_buy": "Sotib olish uchun",
+    "others": "Boshqa ma'lumotlar",
+    "sum": "so'm",
+    "character": {
+      "gpu": "Videokarta",
+      "storage": "Doimiy Xotira",
+      "display": "Displey",
+      "battery": "Batareya",
+      "memory": "Operativ xotira",
+      "os": "Operatsion tizim",
+      "cpu": "Protsessor"
+    }
+  },
+  "admin_page": {
+    "enter_title": "Maxsulot nomini kiriting..",
+    "enter_price": "Narx kiriting",
+    "enter_infos": "Ma'lumotlarni kiriting..",
+    "send": "Jo'natish"
+  }
+}

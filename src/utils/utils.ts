@@ -1,3 +1,4 @@
+import i18next from "../i18n";
 import format from "number-format.js";
 import { v4 } from "uuid";
 const SlugMaker = (leter: string): string => {
@@ -12,6 +13,6 @@ const SlugMaker = (leter: string): string => {
 };
 
 const PriceFormatter = (price: number): string =>
-  format("### ###, so'm", price);
+  format(`### ###, ${i18next.t("one_product_page.sum")}`, price);
 
 export { SlugMaker, PriceFormatter };

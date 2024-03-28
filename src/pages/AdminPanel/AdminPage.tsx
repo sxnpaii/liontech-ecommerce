@@ -16,6 +16,7 @@ import { SlugMaker } from "../../utils/utils";
 import AddImageIcon from "../../assets/images/addImageIcon.png";
 import sass from "../../assets/styles/pages/AdminPage.module.scss";
 import { db, storage } from "../../firebase/firebase";
+import { useTranslation } from "react-i18next";
 
 interface TempImages {
   primary: LaptopImagesProps;
@@ -107,8 +108,7 @@ const AdminPage = () => {
   };
   const [editorValue, setEditorValue] = useState<string>("");
   const MdEditor = useEditor({ minHeight: 300 });
-  console.log(imageForSlider);
-
+  const { t } = useTranslation();
   return (
     <section className={sass.AdminPage}>
       <form
@@ -123,7 +123,7 @@ const AdminPage = () => {
           />
           <input
             type="file"
-            accept="image"
+            accept="image/*"
             className={sass.ImagesInput}
             multiple
             {...register("images", { required: true })}
@@ -137,7 +137,7 @@ const AdminPage = () => {
           <div className={sass.TitleBlock}>
             <input
               className={sass.Title}
-              placeholder="Maxsulot nomini kiriting.."
+              placeholder={t("admin_page.enter_title")}
               {...register("title", { required: true })}
             />
             {errors.title && (
@@ -150,7 +150,7 @@ const AdminPage = () => {
           <div className={sass.PriceBlock}>
             <input
               type="number"
-              placeholder="Narx kiriting"
+              placeholder={t("admin_page.enter_price")}
               className={sass.Price}
               {...register("price", { required: true })}
             />
@@ -164,10 +164,12 @@ const AdminPage = () => {
             {Object.keys(DummyLaptop.character).map((name: string) => (
               <div className={sass.Char} key={name}>
                 {" "}
-                <span className={sass.CharTitle}>{name.toUpperCase()}: </span>
+                <span className={sass.CharTitle}>
+                  {t(`one_product_page.character.${name}`)}:{" "}
+                </span>
                 <input
                   type="text"
-                  placeholder="Ma'lumotlarni kiriting.."
+                  placeholder={t("admin_page.enter_infos")}
                   className={sass.CharValue}
                   {...register(name, { required: true })}
                 />
@@ -181,18 +183,18 @@ const AdminPage = () => {
           </div>
           <button type="submit">
             <a target="_blank" className={sass.Ordered}>
-              Jo'natish
+              {t("admin_page.send")}
             </a>
           </button>
         </div>
       </form>
       <div className={sass.OtherProps}>
-        <h3 className={sass.Text}>Boshqa Ma'lumotlar</h3>
+        <h3 className={sass.Text}>{t("one_product_page.others")}</h3>
         <Editable
           editor={MdEditor}
           onChange={setEditorValue}
           value={editorValue}
-          placeholder="Boshqa Ma'lumotlar.."
+          placeholder={t("one_product_page.others")}
           className={sass.MdEditor}
         />
       </div>
