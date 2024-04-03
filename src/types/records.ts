@@ -8,6 +8,7 @@ export interface LaptopImagesProps {
 }
 
 export interface Laptop extends DocumentData {
+  id?: string;
   title: string;
   slug: string;
   others: string;

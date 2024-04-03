@@ -1,65 +1,83 @@
 .AdminPage {
-  @apply mt-10;
-  .Properties {
-    @apply flex gap-10 justify-center flex-col md:flex-row mb-10;
-    .Images {
-      @apply relative md:w-[40%] max-md:min-h-64;
-      .ImagesSlider {
-        @apply -z-10 w-full opacity-90 2xl:max-w-[600px];
+  @apply mt-10 scroll-smooth transition;
+  .PostProducts {
+    @apply mx-auto;
+    .CreateTitle {
+      @apply sm:w-[83%] mx-auto font-DMSans text-3xl my-10;
+    }
+    .Properties {
+      @apply flex gap-10 justify-center flex-col md:flex-row mb-10;
+      .Images {
+        @apply relative md:w-[40%] max-md:min-h-64;
+        .ImagesSlider {
+          @apply -z-10 w-full opacity-90 2xl:max-w-[600px];
+        }
+        .ImagesInputPrew {
+          @apply absolute top-0 w-full h-full border-2 border-black flex items-center justify-center  bg-slate-400 opacity-30;
+        }
+        .ImagesInput {
+          @apply absolute top-0 z-10 opacity-0 w-full h-full cursor-grab;
+        }
       }
-      .ImagesInputPrew {
-        @apply absolute top-0 w-full h-full border-2 border-black flex items-center justify-center  bg-slate-400 opacity-30;
-      }
-      .ImagesInput {
-        @apply absolute top-0 z-10 opacity-0 w-full h-full cursor-grab;
+      .Props {
+        @apply md:w-[40%] max-md:mx-auto 2xl:max-w-[600px];
+        .TitleBlock {
+          @apply flex flex-wrap gap-x-2;
+          .Title {
+            @apply text-xl bg-transparent p-2 outline-[#0D63F3];
+          }
+        }
+        .PriceBlock {
+          @apply flex flex-wrap gap-2;
+          .Price {
+            @apply inline-block text-3xl font-Inter font-semibold mb-3 bg-transparent p-2 outline-[#0D63F3];
+          }
+        }
+        .Characters {
+          @apply mb-10;
+          .Char {
+            @apply text-black font-Inter text-base flex flex-wrap gap-1;
+            .CharTitle {
+              @apply text-[#0D63F3] font-bold text-lg font-DMSans;
+            }
+            .CharValue {
+              @apply bg-transparent px-2 outline-[#0D63F3];
+            }
+          }
+        }
+        .Ordered {
+          @apply cursor-pointer inline-flex items-center bg-[#0D63F3] rounded-lg px-7 py-3 text-white font-Inter text-lg hover:scale-105 transition-all;
+        }
       }
     }
-    .Props {
-      @apply md:w-[40%] max-md:mx-auto 2xl:max-w-[600px];
-      .TitleBlock {
-        @apply flex flex-wrap gap-x-2;
-        .Title {
-          @apply text-xl bg-transparent p-2 outline-[#0D63F3];
-        }
+    .OtherProps {
+      @apply sm:w-[83%] mx-auto;
+      .Text {
+        @apply font-DMSans text-2xl my-10;
       }
-      .PriceBlock {
-        @apply flex flex-wrap gap-2;
-        .Price {
-          @apply inline-block text-3xl font-Inter font-semibold mb-3 bg-transparent p-2 outline-[#0D63F3];
+      .MdEditor {
+        @apply w-full mx-auto;
+        p,
+        li,
+        a {
+          @apply font-Inter;
         }
-      }
-      .Characters {
-        @apply mb-10;
-        .Char {
-          @apply text-black font-Inter text-base flex flex-wrap gap-1;
-          .CharTitle {
-            @apply text-[#0D63F3] font-bold text-lg font-DMSans;
-          }
-          .CharValue {
-            @apply bg-transparent px-2 outline-[#0D63F3];
-          }
-        }
-      }
-      .Ordered {
-        @apply flex items-center bg-[#0D63F3] rounded-lg px-7 py-3 text-white font-Inter text-lg hover:scale-105 transition-all;
       }
     }
   }
-  .OtherProps {
-    @apply sm:w-[80%] mx-auto;
-    .Text {
+  .Line {
+    @apply my-10 w-[90%] mx-auto  border-black;
+  }
+  .EditProducts {
+    @apply sm:w-[83%] mx-auto;
+    .EditTitle {
       @apply font-DMSans text-3xl my-10;
     }
-    .MdEditor {
-      @apply w-full mx-auto;
-      p,
-      li,
-      a {
-        @apply font-Inter;
-      }
+    .Wrapper {
+      @apply grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2;
     }
   }
   .ErrorMessage {
-    @apply text-red-500 text-sm; 
+    @apply text-red-500 text-sm;
   }
 }

@@ -1,11 +1,12 @@
 import Product from "../../components/UI/Product";
 import sass from "../../assets/styles/sections/HomePage/Catalog.module.scss";
 import { useContext } from "react";
-import { HomePageContext } from "../../contexts/HomePageContext";
+import { UserContext } from "../../contexts/UserContext";
 import { useTranslation } from "react-i18next";
+import Loading from "../../components/UI/Loading";
 
 const Catalog = () => {
-  const Products = useContext(HomePageContext);
+  const Products = useContext(UserContext);
   const { t } = useTranslation();
   return (
     <section className={sass.Catalog}>
@@ -14,7 +15,7 @@ const Catalog = () => {
         {Products.length !== 0 ? (
           Products.map((doc) => <Product product={doc} key={doc.slug} />)
         ) : (
-          <h6>Данные загружаются...</h6>
+          <Loading />
         )}
       </div>
     </section>

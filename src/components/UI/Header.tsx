@@ -5,7 +5,8 @@ import Logo from "../../assets/images/Liontech_logo.png";
 import sass from "../../assets/styles/components/Header.module.scss";
 import { useCookies } from "react-cookie";
 import { useTranslation } from "react-i18next";
-const Header = () => {
+
+const Header = ({ isAdmin, slug }: { isAdmin?: boolean; slug?: string }) => {
   const header = useRef<HTMLElement>(null);
   useEffect(() => {
     let prevScrollpos = window.scrollY;
@@ -36,11 +37,22 @@ const Header = () => {
           <img src={Logo} alt="Liontech logo" />
         </Link>
         <ul className={sass.Ul}>
-          <li>
-            <NavLink className={sass.RouteLinks} to="/contacts">
-              {t("header_comp.contact")}
-            </NavLink>
-          </li>
+          {isAdmin ? (
+            <>
+            <li>
+              <a href="#Create" className={sass.RouteLinks}>Qo'shish</a>
+            </li>
+            <li>
+              <a href="#Edit" className={sass.RouteLinks}>O'chirish yoki Tahrirlash</a>
+            </li>
+            </>
+          ) : (
+            <li>
+              <NavLink className={sass.RouteLinks} to="/contacts">
+                {t("header_comp.contact")}
+              </NavLink>
+            </li>
+          )}
           <li>
             <select
               name="localizer"

@@ -1,3 +1,6 @@
 .AdminLayout{
-  @apply mx-3 overflow-hidden pt-12;
+  @apply mx-3 overflow-hidden;
+  .Space{
+    @apply h-[13vh];
+  }
 }

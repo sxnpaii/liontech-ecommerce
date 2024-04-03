@@ -1,0 +1,9 @@
+.LoadingTrue {
+  @apply w-full h-screen z-50 backdrop-blur-lg fixed top-0 left-0 transition-all text-center flex items-center justify-center;
+  .Text {
+    @apply text-3xl font-Inter;
+  }
+}
+.LoadingFalse {
+  @apply z-0 invisible;
+}

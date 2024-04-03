@@ -1,8 +1,8 @@
 .Product {
   @apply max-w-[350px] rounded-lg bg-white p-5 lg:p-10 transition-all hover:shadow-xl break-inside-avoid;
 
-  &:hover{
-    img{
+  &:hover {
+    img {
       @apply scale-105;
     }
   }
@@ -15,11 +15,23 @@
   }
 
   .Title {
-    @apply  text-gray-700 sm:text-lg font-semibold mb-3 bg-white;
+    @apply text-gray-700 sm:text-lg font-semibold mb-3 bg-white;
   }
-  .CharsList{
-  .Chars{
-      @apply sm:list-disc mb-2 font-Inter text-sm
+  .CharsList {
+    .Chars {
+      @apply sm:list-disc mb-2 font-Inter text-sm;
+    }
+  }
+  .More {
+    @apply bg-[#0D63F3] rounded-xl w-full inline-block text-center mt-5 text-white py-3 hover:scale-105 hover:bg-transparent hover:border hover:border-[#0D63F3] hover:text-[#0D63F3] transition-all;
+  }
+  .EditActions {
+    @apply flex justify-around items-center mt-3 font-Inter;
+    .Edit {
+      @apply p-3 rounded-xl bg-[#0D63F3] text-white hover:bg-transparent hover:border hover:border-[#0D63F3] hover:text-[#0D63F3] transition cursor-pointer;
+    }
+    .Delete {
+      @apply border p-3 bg-red-600 text-white rounded-xl hover:bg-transparent hover:border hover:border-red-600 hover:text-red-600 transition-all cursor-pointer;
     }
   }
 }

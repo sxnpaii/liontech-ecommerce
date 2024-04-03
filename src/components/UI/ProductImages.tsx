@@ -7,7 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 import { Laptop } from "../../types/records";
-import sass from "../../assets/styles/sections/OneProductPage/ProductImages.module.scss";
+import sass from "../../assets/styles/components/ProductImages.module.scss";
 const ProductImages = ({
   oneProdImgs,
   slug,
@@ -30,6 +30,8 @@ const ProductImages = ({
       swipRef = swiper2Ref.current;
     }
   });
+
+  
   return (
     <section className={`${sass.ProductImages} ${className}`}>
       <Swiper
@@ -71,7 +73,6 @@ const ProductImages = ({
         spaceBetween={10}
         slidesPerView={3}
         autoHeight={true}
-        // direction="vertical"
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Thumbs, Navigation]}

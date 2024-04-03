@@ -6,7 +6,7 @@
       @apply w-[150px] p-2;
     }
     .Ul {
-      @apply flex gap-5;
+      @apply flex gap-5 list-none;
       .RouteLinks {
         @apply font-DMSans hover:underline font-semibold hover:text-gray-400 max-sm:text-sm;
       }

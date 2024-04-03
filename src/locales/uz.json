@@ -2,8 +2,13 @@
   "header_comp": {
     "contact": "Bog'lanish"
   },
-  "home_page":{
-    "our_products":"Bizning maxsulotlar"
+  "product_comp": {
+    "more": "Batafsil",
+    "edit": "Tahrirlash",
+    "delete": "O'chirish"
+  },
+  "home_page": {
+    "our_products": "Bizning maxsulotlar"
   },
   "contact_page": {
     "short_desc": "Biz endi boshladik, shuning uchun sayt hozircha test rejimda ishlayapti. Agar noutbuk sotib olmoqchi bo'lsangiz quyidagi raqamga murojaat qiling."
@@ -26,6 +31,8 @@
     "enter_title": "Maxsulot nomini kiriting..",
     "enter_price": "Narx kiriting",
     "enter_infos": "Ma'lumotlarni kiriting..",
-    "send": "Jo'natish"
+    "send": "Jo'natish",
+    "create_title": "Maxsulot qo'shish",
+    "edit_title":"Maxsulotlarni O'zgartirish yoki o'chirish"
   }
 }
