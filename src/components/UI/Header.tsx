@@ -6,7 +6,7 @@ import sass from "../../assets/styles/components/Header.module.scss";
 import { useCookies } from "react-cookie";
 import { useTranslation } from "react-i18next";
 
-const Header = ({ isAdmin, slug }: { isAdmin?: boolean; slug?: string }) => {
+const Header = ({ isAdmin }: { isAdmin?: boolean; slug?: string }) => {
   const header = useRef<HTMLElement>(null);
   useEffect(() => {
     let prevScrollpos = window.scrollY;
@@ -39,12 +39,16 @@ const Header = ({ isAdmin, slug }: { isAdmin?: boolean; slug?: string }) => {
         <ul className={sass.Ul}>
           {isAdmin ? (
             <>
-            <li>
-              <a href="#Create" className={sass.RouteLinks}>Qo'shish</a>
-            </li>
-            <li>
-              <a href="#Edit" className={sass.RouteLinks}>O'chirish yoki Tahrirlash</a>
-            </li>
+              <li>
+                <a href="#Create" className={sass.RouteLinks}>
+                  Qo'shish
+                </a>
+              </li>
+              <li>
+                <a href="#Edit" className={sass.RouteLinks}>
+                  O'chirish yoki Tahrirlash
+                </a>
+              </li>
             </>
           ) : (
             <li>
