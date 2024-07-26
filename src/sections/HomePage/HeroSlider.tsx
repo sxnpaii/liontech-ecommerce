@@ -1,4 +1,4 @@
-import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperComponent, SwiperRef, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -15,19 +15,37 @@ const HeroVideos = [
 ];
 
 const HeroSlider = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const VideoController = () => {
-    const video = videoRef.current;
-    if (video !== null) {
-      video.load();
+  
+  const sliderRef = useRef<SwiperRef>(null);
+  // const swiperSlide = useSwiperSlide();
+  useEffect(() => {
+if(sliderRef.current !== null){
+  const swiper = sliderRef.current.swiper;
+  const handleSlideChange = () => {
+    const videos = swiper.el.querySelectorAll('video');
+    videos.forEach(video => {
+      video.currentTime = 0;
+      video.pause();
+    });
+    const activeSlide = swiper.slides[swiper.activeIndex];
+    const activeVideo = activeSlide.querySelector('video');
+    if (activeVideo) {
+      activeVideo.play();
     }
   };
-  useEffect(() => {
-    VideoController();
-  });
+
+  swiper.on('slideChangeTransitionEnd', handleSlideChange);
+  return () => {
+    swiper.off('slideChangeTransitionEnd', handleSlideChange);
+  };
+}
+
+   
+  }, []);
+
   return (
     <SwiperComponent
+    ref={sliderRef}
       className={`mySwiper ${sass.Swiper}`}
       modules={[Autoplay, EffectFade]}
       spaceBetween={10}
@@ -37,17 +55,16 @@ const HeroSlider = () => {
         delay: 4750,
         disableOnInteraction: false,
       }}
-      onSlideChange={VideoController}
     >
       {HeroVideos.map((video, index) => (
         <SwiperSlide className={sass.SwiperSlide} key={index}>
           <video
+            
             autoPlay={true}
             src={video}
-            loop
-            muted
-            className={sass.Img}
-            ref={videoRef}
+            // loop
+            muted={true}
+            className={`${sass.Img}`}
           />
         </SwiperSlide>
       ))}

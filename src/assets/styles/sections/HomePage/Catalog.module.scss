@@ -1,7 +1,7 @@
 .Catalog {
   @apply mt-10;
   .Wrapper {
-    @apply grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2;
+    @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5  mx-auto gap-10 ;
   }
   .CatalogTitle {
     @apply font-Inter text-3xl font-semibold mb-5;

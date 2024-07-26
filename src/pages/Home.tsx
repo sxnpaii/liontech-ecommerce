@@ -3,10 +3,10 @@ import HeroSlider from "../sections/HomePage/HeroSlider";
 
 const Home = () => {
   return (
-    <section>
+    <main>
       <HeroSlider />
       <Catalog />
-    </section>
+    </main>
   );
 };
 
